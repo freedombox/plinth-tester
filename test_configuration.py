@@ -1,5 +1,7 @@
 import configparser
-from pytest_bdd import scenario, given, when, then
+from pytest_bdd import scenario, when, then
+
+from test_common import *
 
 
 config = configparser.ConfigParser()
@@ -14,14 +16,6 @@ def test_change_hostname():
 @scenario('change_domain_name.feature', 'Change domain name')
 def test_change_domain_name():
     pass
-
-
-@given("I'm a logged in user")
-def logged_in_user(browser):
-    browser.visit(config['DEFAULT']['url'])
-    browser.fill('username', config['DEFAULT']['username'])
-    browser.fill('password', config['DEFAULT']['password'])
-    browser.find_by_value('Login').click()
 
 
 @when('I go to the Configuration page')
