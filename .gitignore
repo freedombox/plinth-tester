@@ -1,4 +1,4 @@
 *~
 .cache/
 __pycache__/
-test_plinth/
+test_*/

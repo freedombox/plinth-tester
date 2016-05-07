@@ -4,6 +4,7 @@
 $ sudo apt install python3-pytest
 $ pip3 install splinter
 $ pip3 install pytest-splinter
+$ pip3 install pytest-bdd
 ```
 
 # Run Plinth

@@ -1,4 +1,9 @@
+import configparser
 from pytest_bdd import scenario, given, when, then
+
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 
 @scenario('change_hostname.feature', 'Change hostname')
@@ -13,9 +18,9 @@ def test_change_domain_name():
 
 @given("I'm a logged in user")
 def logged_in_user(browser):
-    browser.visit('http://127.0.0.1:8000/plinth')
-    browser.fill('username', 'tester')
-    browser.fill('password', 'tester')
+    browser.visit(config['DEFAULT']['url'])
+    browser.fill('username', config['DEFAULT']['username'])
+    browser.fill('password', config['DEFAULT']['password'])
     browser.find_by_value('Login').click()
 
 
@@ -27,12 +32,14 @@ def go_to_configuration(browser):
 
 @when('I fill in a hostname')
 def fill_hostname(browser):
-    browser.find_by_id('id_configuration-hostname').fill('testhost')
+    browser.find_by_id('id_configuration-hostname').fill(
+        config['Configuration']['hostname'])
 
 
 @when('I fill in a domain name')
 def fill_hostname(browser):
-    browser.find_by_id('id_configuration-domainname').fill('testdomain')
+    browser.find_by_id('id_configuration-domainname').fill(
+        config['Configuration']['domainname'])
 
 
 @when('I press the submit button')
@@ -42,10 +49,11 @@ def submit_form(browser):
 
 @then('the hostname should match the new value')
 def hostname_is_new_value(browser):
-    assert(browser.find_by_id('id_configuration-hostname').value == 'testhost')
+    assert(browser.find_by_id('id_configuration-hostname').value \
+           == config['Configuration']['hostname'])
 
 
 @then('the domain name should match the new value')
 def domain_name_is_new_value(browser):
     assert(browser.find_by_id('id_configuration-domainname').value \
-           == 'testdomain')
+           == config['Configuration']['domainname'])
