@@ -1,0 +1,15 @@
+* Feature: Configuration
+** TODO Scenario: Change language
+
+* Feature: Users and Groups
+** TODO Scenario: Rename user
+** TODO Scenario: Add user to wiki group
+** TODO Scenario: Remove user from wiki group
+** TODO Scenario: Set user SSH key
+** TODO Scenario: Make user inactive
+** TODO Scenario: Make user active
+** TODO Scenario: Change user password
+** TODO Scenario: Delete user
+
+* Feature: Date & Time
+** TODO Scenario: Change timezone
