@@ -9,7 +9,7 @@ $ pip3 install pytest-splinter
 # Run Plinth
 
 ```
-$ plinth --no-daemon --debug
+$ sudo plinth --no-daemon --debug
 ```
 
 # Setup Plinth
@@ -22,5 +22,5 @@ Create a new user as follows:
 # Run Plinth Tests
 
 ```
-$ py.test3
+$ py.test-3
 ```
