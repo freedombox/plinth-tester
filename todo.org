@@ -9,7 +9,7 @@
 ** TODO Scenario: Make user inactive
 ** TODO Scenario: Make user active
 ** TODO Scenario: Change user password
-** TODO Scenario: Delete user
+** DONE Scenario: Delete user
 
 * Feature: Date & Time
 ** TODO Scenario: Change timezone

@@ -30,6 +30,11 @@ def test_create_user():
     pass
 
 
+@scenario(feature('delete_user'), 'Delete user')
+def test_delete_user():
+    pass
+
+
 @given("the new user doesn't exist")
 def new_user_does_not_exist(browser):
     browser.find_link_by_href('/plinth/sys/').first.click()
@@ -43,10 +48,46 @@ def new_user_does_not_exist(browser):
             'Delete ' + config['UsersAndGroups']['username']).click()
 
 
+@given('the test user exists')
+def test_user_exists(browser):
+    browser.find_link_by_href('/plinth/sys/').first.click()
+    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    user_link = browser.find_link_by_href(
+        '/plinth/sys/users/' + config['UsersAndGroups']['username'] \
+        + '/edit/')
+    if not user_link:
+        browser.find_link_by_href('/plinth/sys/users/create/').first.click()
+        browser.find_by_id('id_username').fill(
+            config['UsersAndGroups']['username'])
+        browser.find_by_id('id_password1').fill(
+            config['UsersAndGroups']['password'])
+        browser.find_by_id('id_password2').fill(
+            config['UsersAndGroups']['password'])
+        browser.find_by_value('Create User').click()
+
+
 @when('I go to the Users and Groups page')
 def go_to_users_and_groups(browser):
     browser.find_link_by_href('/plinth/sys/').first.click()
     browser.find_link_by_href('/plinth/sys/users/').first.click()
+
+
+@when('I go to the Users tab')
+def go_to_create_user(browser):
+    browser.find_link_by_href('/plinth/sys/users/').first.click()
+
+
+@when('I press the delete user button')
+def delete_user(browser):
+    browser.find_link_by_href(
+        '/plinth/sys/users/' + config['UsersAndGroups']['username'] \
+        + '/delete/').first.click()
+
+
+@when('I confirm to delete the user')
+def confirm_delete_user(browser):
+    browser.find_by_value(
+        'Delete ' + config['UsersAndGroups']['username']).click()
 
 
 @when('I go to the Create User tab')
@@ -77,11 +118,11 @@ def create_user(browser):
     browser.find_by_value('Create User').click()
 
 
-@when('I go to the Users tab')
-def go_to_create_user(browser):
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
-
-
 @then('the new user should be listed')
 def new_user_is_listed(browser):
     assert browser.is_text_present(config['UsersAndGroups']['username'])
+
+
+@then('the test user should not be listed')
+def new_user_is_listed(browser):
+    assert not browser.is_text_present(config['UsersAndGroups']['username'])
