@@ -1,5 +1,5 @@
 * Feature: Configuration
-** TODO Scenario: Change language
+** DONE Scenario: Change language
 
 * Feature: Users and Groups
 ** TODO Scenario: Rename user
