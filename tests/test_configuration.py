@@ -25,12 +25,12 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 
-@scenario('change_hostname.feature', 'Change hostname')
+@scenario(feature('change_hostname'), 'Change hostname')
 def test_change_hostname():
     pass
 
 
-@scenario('change_domain_name.feature', 'Change domain name')
+@scenario(feature('change_domain_name'), 'Change domain name')
 def test_change_domain_name():
     pass
 

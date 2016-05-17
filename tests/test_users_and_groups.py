@@ -25,7 +25,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 
-@scenario('create_user.feature', 'Create user')
+@scenario(feature('create_user'), 'Create user')
 def test_create_user():
     pass
 

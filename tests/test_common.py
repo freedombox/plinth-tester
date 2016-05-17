@@ -23,6 +23,10 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 
+def feature(name):
+    return '../features/' + name + '.feature'
+
+
 @given("I'm a logged in user")
 def logged_in_user(browser):
     browser.visit(config['DEFAULT']['url'])
