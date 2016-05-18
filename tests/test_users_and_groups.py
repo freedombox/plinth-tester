@@ -25,6 +25,11 @@ def test_create_user():
     pass
 
 
+@scenario(feature('rename_user'), 'Rename user')
+def test_rename_user():
+    pass
+
+
 @scenario(feature('delete_user'), 'Delete user')
 def test_delete_user():
     pass
@@ -67,6 +72,17 @@ def go_to_create_user(browser):
     browser.find_link_by_href('/plinth/sys/users/').first.click()
 
 
+@when(parsers.parse('I select the user {name:w}'))
+def select_user(browser, name):
+    browser.find_link_by_href(
+        '/plinth/sys/users/' + name + '/edit/').first.click()
+
+
+@when('I press the Save Changes button')
+def save_changes(browser, name):
+    browser.find_by_value('Save Changes').click()
+
+
 @when(parsers.parse('I press the delete user button for {name:w}'))
 def delete_user(browser, name):
     browser.find_link_by_href(
@@ -99,7 +115,7 @@ def fill_password_confirmation(browser, password):
     browser.find_by_id('id_password2').fill(password)
 
 
-@when('I press the create user button')
+@when('I press the Create User button')
 def create_user(browser):
     browser.find_by_value('Create User').click()
 

@@ -9,6 +9,6 @@ Scenario: Create user
     And I fill in alice for the username
     And I fill in secret for the password
     And I fill in secret for the password confirmation
-    And I press the create user button
+    And I press the Create User button
     And I go to the Users tab
     Then alice should be listed as a user

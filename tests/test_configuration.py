@@ -228,7 +228,7 @@ def select_language_simplified_chinese(browser):
     lang.click()
 
 
-@when('I press the submit button')
+@when('I press the Submit button')
 def submit_form(browser):
     browser.find_by_value('Submit').click()
 

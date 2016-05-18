@@ -2,7 +2,7 @@
 ** DONE Scenario: Change language
 
 * Feature: Users and Groups
-** TODO Scenario: Rename user
+** DONE Scenario: Rename user
 ** TODO Scenario: Add user to wiki group
 ** TODO Scenario: Remove user from wiki group
 ** TODO Scenario: Set user SSH key
