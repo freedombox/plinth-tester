@@ -1,6 +1,20 @@
 Feature: Configuration
     Configure the system.
 
+Scenario: Change hostname
+    Given I'm a logged in user
+    When I go to the Configuration page
+    And I fill in mybox for the hostname
+    And I press the Submit button
+    Then the hostname should be mybox
+
+Scenario: Change domain name
+    Given I'm a logged in user
+    When I go to the Configuration page
+    And I fill in mydomain for the domain name
+    And I press the Submit button
+    Then the domain name should be mydomain
+
 Scenario: Change language to Danish
     Given I'm a logged in user
     When I go to the Configuration page

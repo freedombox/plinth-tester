@@ -20,17 +20,17 @@ from pytest_bdd import scenario, parsers, given, when, then
 from test_common import *
 
 
-@scenario(feature('create_user'), 'Create user')
+@scenario(feature('users_and_groups'), 'Create user')
 def test_create_user():
     pass
 
 
-@scenario(feature('rename_user'), 'Rename user')
+@scenario(feature('users_and_groups'), 'Rename user')
 def test_rename_user():
     pass
 
 
-@scenario(feature('delete_user'), 'Delete user')
+@scenario(feature('users_and_groups'), 'Delete user')
 def test_delete_user():
     pass
 

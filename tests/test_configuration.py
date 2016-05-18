@@ -20,82 +20,82 @@ from pytest_bdd import scenario, parsers, when, then
 from test_common import *
 
 
-@scenario(feature('change_hostname'), 'Change hostname')
+@scenario(feature('configuration'), 'Change hostname')
 def test_change_hostname():
     pass
 
 
-@scenario(feature('change_domain_name'), 'Change domain name')
+@scenario(feature('configuration'), 'Change domain name')
 def test_change_domain_name():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Danish')
+@scenario(feature('configuration'), 'Change language to Danish')
 def test_change_language_to_danish():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to German')
+@scenario(feature('configuration'), 'Change language to German')
 def test_change_language_to_german():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Spanish')
+@scenario(feature('configuration'), 'Change language to Spanish')
 def test_change_language_to_spanish():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to French')
+@scenario(feature('configuration'), 'Change language to French')
 def test_change_language_to_french():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Italian')
+@scenario(feature('configuration'), 'Change language to Italian')
 def test_change_language_to_italian():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Norwegian Bokmål')
+@scenario(feature('configuration'), 'Change language to Norwegian Bokmål')
 def test_change_language_to_norwegian_bokmål():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Dutch')
+@scenario(feature('configuration'), 'Change language to Dutch')
 def test_change_language_to_dutch():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Polish')
+@scenario(feature('configuration'), 'Change language to Polish')
 def test_change_language_to_polish():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Portuguese')
+@scenario(feature('configuration'), 'Change language to Portuguese')
 def test_change_language_to_portuguese():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Russian')
+@scenario(feature('configuration'), 'Change language to Russian')
 def test_change_language_to_russian():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Swedish')
+@scenario(feature('configuration'), 'Change language to Swedish')
 def test_change_language_to_swedish():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Telugu')
+@scenario(feature('configuration'), 'Change language to Telugu')
 def test_change_language_to_telugu():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Turkish')
+@scenario(feature('configuration'), 'Change language to Turkish')
 def test_change_language_to_turkish():
     pass
 
 
-@scenario(feature('change_language'), 'Change language to Simplified Chinese')
+@scenario(feature('configuration'), 'Change language to Simplified Chinese')
 def test_change_language_to_simplified_chinese():
     pass
 
