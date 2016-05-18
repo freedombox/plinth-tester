@@ -15,14 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import configparser
-from pytest_bdd import scenario, when, then
+from pytest_bdd import scenario, parsers, given, when, then
 
 from test_common import *
-
-
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 
 @scenario(feature('create_user'), 'Create user')
@@ -35,34 +30,29 @@ def test_delete_user():
     pass
 
 
-@given("the new user doesn't exist")
-def new_user_does_not_exist(browser):
+@given(parsers.parse("the user {name:w} doesn't exist"))
+def new_user_does_not_exist(browser, name):
     browser.find_link_by_href('/plinth/sys/').first.click()
     browser.find_link_by_href('/plinth/sys/users/').first.click()
     delete_link = browser.find_link_by_href(
-        '/plinth/sys/users/' + config['UsersAndGroups']['username'] \
-        + '/delete/')
+        '/plinth/sys/users/' + name + '/delete/')
     if delete_link:
         delete_link.first.click()
         browser.find_by_value(
-            'Delete ' + config['UsersAndGroups']['username']).click()
+            'Delete ' + name).click()
 
 
-@given('the test user exists')
-def test_user_exists(browser):
+@given(parsers.parse('the user {name:w} exists'))
+def test_user_exists(browser, name):
     browser.find_link_by_href('/plinth/sys/').first.click()
     browser.find_link_by_href('/plinth/sys/users/').first.click()
     user_link = browser.find_link_by_href(
-        '/plinth/sys/users/' + config['UsersAndGroups']['username'] \
-        + '/edit/')
+        '/plinth/sys/users/' + name + '/edit/')
     if not user_link:
         browser.find_link_by_href('/plinth/sys/users/create/').first.click()
-        browser.find_by_id('id_username').fill(
-            config['UsersAndGroups']['username'])
-        browser.find_by_id('id_password1').fill(
-            config['UsersAndGroups']['password'])
-        browser.find_by_id('id_password2').fill(
-            config['UsersAndGroups']['password'])
+        browser.find_by_id('id_username').fill(name)
+        browser.find_by_id('id_password1').fill('secret')
+        browser.find_by_id('id_password2').fill('secret')
         browser.find_by_value('Create User').click()
 
 
@@ -77,17 +67,15 @@ def go_to_create_user(browser):
     browser.find_link_by_href('/plinth/sys/users/').first.click()
 
 
-@when('I press the delete user button')
-def delete_user(browser):
+@when(parsers.parse('I press the delete user button for {name:w}'))
+def delete_user(browser, name):
     browser.find_link_by_href(
-        '/plinth/sys/users/' + config['UsersAndGroups']['username'] \
-        + '/delete/').first.click()
+        '/plinth/sys/users/' + name + '/delete/').first.click()
 
 
-@when('I confirm to delete the user')
-def confirm_delete_user(browser):
-    browser.find_by_value(
-        'Delete ' + config['UsersAndGroups']['username']).click()
+@when(parsers.parse('I confirm to delete the user {name:w}'))
+def confirm_delete_user(browser, name):
+    browser.find_by_value('Delete ' + name).click()
 
 
 @when('I go to the Create User tab')
@@ -95,22 +83,20 @@ def go_to_create_user(browser):
     browser.find_link_by_href('/plinth/sys/users/create/').first.click()
 
 
-@when('I fill in a username')
-def fill_username(browser):
-    browser.find_by_id('id_username').fill(
-        config['UsersAndGroups']['username'])
+@when(parsers.parse('I fill in {name:w} for the username'))
+def fill_username(browser, name):
+    browser.find_by_id('id_username').fill(name)
 
 
-@when('I fill in a password')
-def fill_password(browser):
-    browser.find_by_id('id_password1').fill(
-        config['UsersAndGroups']['password'])
+@when(parsers.parse('I fill in {password:w} for the password'))
+def fill_password(browser, password):
+    browser.find_by_id('id_password1').fill(password)
 
 
-@when('I fill in a password confirmation')
-def fill_password_confirmation(browser):
-    browser.find_by_id('id_password2').fill(
-        config['UsersAndGroups']['password'])
+@when(parsers.parse(
+    'I fill in {password:w} for the password confirmation'))
+def fill_password_confirmation(browser, password):
+    browser.find_by_id('id_password2').fill(password)
 
 
 @when('I press the create user button')
@@ -118,11 +104,11 @@ def create_user(browser):
     browser.find_by_value('Create User').click()
 
 
-@then('the new user should be listed')
-def new_user_is_listed(browser):
-    assert browser.is_text_present(config['UsersAndGroups']['username'])
+@then(parsers.parse('{name:w} should be listed as a user'))
+def new_user_is_listed(browser, name):
+    assert browser.is_text_present(name)
 
 
-@then('the test user should not be listed')
-def new_user_is_listed(browser):
-    assert not browser.is_text_present(config['UsersAndGroups']['username'])
+@then(parsers.parse('{name:w} should not be listed as a user'))
+def new_user_is_listed(browser, name):
+    assert not browser.is_text_present(name)

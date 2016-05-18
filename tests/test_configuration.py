@@ -15,14 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import configparser
-from pytest_bdd import scenario, when, then
+from pytest_bdd import scenario, parsers, when, then
 
 from test_common import *
-
-
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 
 @scenario(feature('change_hostname'), 'Change hostname')
@@ -111,16 +106,14 @@ def go_to_configuration(browser):
     browser.find_link_by_href('/plinth/sys/config/').first.click()
 
 
-@when('I fill in a hostname')
-def fill_hostname(browser):
-    browser.find_by_id('id_configuration-hostname').fill(
-        config['Configuration']['hostname'])
+@when(parsers.parse('I fill in {hostname:w} for the hostname'))
+def fill_hostname(browser, hostname):
+    browser.find_by_id('id_configuration-hostname').fill(hostname)
 
 
-@when('I fill in a domain name')
-def fill_hostname(browser):
-    browser.find_by_id('id_configuration-domainname').fill(
-        config['Configuration']['domainname'])
+@when(parsers.parse('I fill in {domain:w} for the domain name'))
+def fill_hostname(browser, domain):
+    browser.find_by_id('id_configuration-domainname').fill(domain)
 
 
 @when('I select Danish language')
@@ -240,16 +233,14 @@ def submit_form(browser):
     browser.find_by_value('Submit').click()
 
 
-@then('the hostname should match the new value')
-def hostname_is_new_value(browser):
-    assert(browser.find_by_id('id_configuration-hostname').value \
-           == config['Configuration']['hostname'])
+@then(parsers.parse('the hostname should be {hostname:w}'))
+def hostname_is_new_value(browser, hostname):
+    assert(browser.find_by_id('id_configuration-hostname').value == hostname)
 
 
-@then('the domain name should match the new value')
-def domain_name_is_new_value(browser):
-    assert(browser.find_by_id('id_configuration-domainname').value \
-           == config['Configuration']['domainname'])
+@then(parsers.parse('the domain name should be {domain:w}'))
+def domain_name_is_new_value(browser, domain):
+    assert(browser.find_by_id('id_configuration-domainname').value == domain)
 
 
 @then('the Configuration page title should be in Danish')

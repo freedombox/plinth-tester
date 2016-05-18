@@ -4,6 +4,6 @@ Feature: Configuration
 Scenario: Change hostname
     Given I'm a logged in user
     When I go to the Configuration page
-    And I fill in a hostname
+    And I fill in mybox for the hostname
     And I press the submit button
-    Then the hostname should match the new value
+    Then the hostname should be mybox
