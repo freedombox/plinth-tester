@@ -1,15 +1,51 @@
-* Feature: Configuration
-** DONE Scenario: Change language
-
 * Feature: Users and Groups
-** DONE Scenario: Rename user
 ** TODO Scenario: Add user to wiki group
 ** TODO Scenario: Remove user from wiki group
 ** TODO Scenario: Set user SSH key
+** TODO Scenario: Clear user SSH key
 ** TODO Scenario: Make user inactive
 ** TODO Scenario: Make user active
 ** TODO Scenario: Change user password
-** DONE Scenario: Delete user
+
+* Feature: Software Upgrades
+** TODO Scenario: Disable automatic upgrades
+** TODO Scenario: Enable automatic upgrades
 
 * Feature: Date & Time
+** TODO Scenario: Disable application
+** TODO Scenario: Enable application
 ** TODO Scenario: Change timezone
+
+* Feature: Service Discovery
+** TODO Scenario: Disable application
+** TODO Scenario: Enable application
+
+* Feature: Help
+** TODO Scenario: Visit the wiki
+** TODO Scenario: Visit the mailing list
+** TODO Scenario: Visit the IRC channel
+** TODO Scenario: View the manual
+** TODO Scenario: View the about page
+
+* Feature: Tor
+** TODO Scenario: Disable Tor
+** TODO Scenario: Enable Tor
+** TODO Scenario: Disable Tor Hidden Service
+** TODO Scenario: Enable Tor Hidden Service
+** TODO Scenario: Disable software package download over Tor
+** TODO Scenario: Enable software package download over Tor
+
+* Feature: Dynamic DNS Client
+** TODO Scenario: Configure GnuDIP service
+** TODO Scenario: Configure noip.com service
+** TODO Scenario: Configure selfhost.bz service
+** TODO Scenario: Configure freedns.afraid.org service
+** TODO Scenario: Configure other update URL service
+
+* Feature: Public Visibility (PageKite)
+** TODO Scenario: Enable PageKite
+** TODO Scenario: Disable PageKite
+** TODO Scenario: Enable standard services
+** TODO Scenario: Disable standard services
+** TODO Scenario: Add custom service
+** TODO Scenario: Delete custom service
