@@ -17,149 +17,115 @@
 
 from pytest_bdd import parsers, when, then
 
+from support import nav_to_sys_module, submit
+
 
 @when('I go to the Configuration page')
 def go_to_configuration(browser):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/config/').first.click()
+    nav_to_sys_module(browser, 'config')
 
 
 @when(parsers.parse('I change the hostname to {hostname:w}'))
 def change_hostname(browser, hostname):
     browser.find_by_id('id_configuration-hostname').fill(hostname)
-    browser.find_by_value('Submit').click()
+    submit(browser)
 
 
 @when(parsers.parse('I change the domain name to {domain:w}'))
 def change_domain_name(browser, domain):
     browser.find_by_id('id_configuration-domainname').fill(domain)
-    browser.find_by_value('Submit').click()
+    submit(browser)
+
+
+def select_language(browser, language_code):
+    browser.find_by_xpath(
+        '//select[@id="id_configuration-language"]//option[@value="' \
+        + language_code + '"]'
+    ).first.click()
 
 
 @when('I change the language to Danish')
 def change_language_to_danish(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="da"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'da')
+    submit(browser)
 
 
 @when('I change the language to German')
 def change_language_to_german(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="de"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'de')
+    submit(browser)
 
 
 @when('I change the language to Spanish')
 def change_language_to_spanish(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="es"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'es')
+    submit(browser)
 
 
 @when('I change the language to French')
 def change_language_to_french(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="fr"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'fr')
+    submit(browser)
 
 
 @when('I change the language to Italian')
 def change_language_to_italian(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="it"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'it')
+    submit(browser)
 
 
 @when('I change the language to Norwegian Bokmål')
 def change_language_to_norwegian_bokmål(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="nb"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'nb')
+    submit(browser)
 
 
 @when('I change the language to Dutch')
 def change_language_to_dutch(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="nl"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'nl')
+    submit(browser)
 
 
 @when('I change the language to Polish')
 def change_language_to_polish(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="pl"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'pl')
+    submit(browser)
 
 
 @when('I change the language to Portuguese')
 def change_language_to_portuguese(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="pt"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'pt')
+    submit(browser)
 
 
 @when('I change the language to Russian')
 def change_language_to_russian(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="ru"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'ru')
+    submit(browser)
 
 
 @when('I change the language to Swedish')
 def change_language_to_swedish(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="sv"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'sv')
+    submit(browser)
 
 
 @when('I change the language to Telugu')
 def change_language_to_telugu(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="te"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'te')
+    submit(browser)
 
 
 @when('I change the language to Turkish')
 def change_language_to_turkish(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="tr"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'tr')
+    submit(browser)
 
 
 @when('I change the language to Simplified Chinese')
 def change_language_to_simplified_chinese(browser):
-    lang = browser.find_by_xpath(
-        '//select[@id="id_configuration-language"]//option[@value="zh-hans"]'
-    ).first
-    lang.click()
-    browser.find_by_value('Submit').click()
+    select_language(browser, 'zh-hans')
+    submit(browser)
 
 
 @then(parsers.parse('the hostname should be {hostname:w}'))

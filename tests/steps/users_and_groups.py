@@ -17,11 +17,12 @@
 
 from pytest_bdd import parsers, given, when, then
 
+from support import nav_to_sys_module
+
 
 @given(parsers.parse("the user {name:w} doesn't exist"))
 def new_user_does_not_exist(browser, name):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    nav_to_sys_module(browser, 'users')
     delete_link = browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/delete/')
     if delete_link:
@@ -32,22 +33,16 @@ def new_user_does_not_exist(browser, name):
 
 @given(parsers.parse('the user {name:w} exists'))
 def test_user_exists(browser, name):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    nav_to_sys_module(browser, 'users')
     user_link = browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/edit/')
     if not user_link:
-        browser.find_link_by_href('/plinth/sys/users/create/').first.click()
-        browser.find_by_id('id_username').fill(name)
-        browser.find_by_id('id_password1').fill('secret')
-        browser.find_by_id('id_password2').fill('secret')
-        browser.find_by_value('Create User').click()
+        create_user(browser, name, 'secret')
 
 
 @when('I go to the Users and Groups page')
 def go_to_users_and_groups(browser):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    nav_to_sys_module(browser, 'users')
 
 
 @when(parsers.parse(
@@ -77,11 +72,11 @@ def delete_user(browser, name):
 
 @then(parsers.parse('{name:w} should be listed as a user'))
 def new_user_is_listed(browser, name):
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    nav_to_sys_module(browser, 'users')
     assert browser.is_text_present(name)
 
 
 @then(parsers.parse('{name:w} should not be listed as a user'))
 def new_user_is_not_listed(browser, name):
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+    nav_to_sys_module(browser, 'users')
     assert not browser.is_text_present(name)

@@ -39,3 +39,12 @@ def login(browser, url, username, password):
         browser.find_by_id('id_password1').fill(password)
         browser.find_by_id('id_password2').fill(password)
         browser.find_by_value('Box it up!').click()
+
+
+def nav_to_sys_module(browser, module):
+    browser.find_link_by_href('/plinth/sys/').first.click()
+    browser.find_link_by_href('/plinth/sys/' + module + '/').first.click()
+
+
+def submit(browser):
+    browser.find_by_value('Submit').click()
