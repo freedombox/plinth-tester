@@ -18,14 +18,15 @@
 Feature: Users and Groups
   Manage users and groups.
 
-Scenario: Create user
+Background:
   Given I'm a logged in user
+
+Scenario: Create user
   Given the user alice doesn't exist
   When I create a user named alice with password secret
   Then alice should be listed as a user
 
 Scenario: Rename user
-  Given I'm a logged in user
   Given the user alice exists
   Given the user bob doesn't exist
   When I rename the user alice to bob
@@ -33,7 +34,6 @@ Scenario: Rename user
   Then bob should be listed as a user
 
 Scenario: Delete user
-  Given I'm a logged in user
   Given the user alice exists
   When I delete the user alice
   Then alice should not be listed as a user

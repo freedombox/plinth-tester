@@ -32,66 +32,6 @@ def test_change_domain_name():
     pass
 
 
-@scenario(feature('configuration'), 'Change language to Danish')
-def test_change_language_to_danish():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to German')
-def test_change_language_to_german():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Spanish')
-def test_change_language_to_spanish():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to French')
-def test_change_language_to_french():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Norwegian Bokmål')
-def test_change_language_to_norwegian_bokmål():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Dutch')
-def test_change_language_to_dutch():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Polish')
-def test_change_language_to_polish():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Portuguese')
-def test_change_language_to_portuguese():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Russian')
-def test_change_language_to_russian():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Swedish')
-def test_change_language_to_swedish():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Telugu')
-def test_change_language_to_telugu():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Turkish')
-def test_change_language_to_turkish():
-    pass
-
-
-@scenario(feature('configuration'), 'Change language to Simplified Chinese')
-def test_change_language_to_simplified_chinese():
+@scenario(feature('configuration'), 'Change language')
+def test_change_language():
     pass
