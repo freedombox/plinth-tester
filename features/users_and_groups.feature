@@ -21,22 +21,19 @@ Feature: Users and Groups
 Scenario: Create user
   Given I'm a logged in user
   Given the user alice doesn't exist
-  When I go to the Users and Groups page
-  And I create a user named alice with password secret
+  When I create a user named alice with password secret
   Then alice should be listed as a user
 
 Scenario: Rename user
   Given I'm a logged in user
   Given the user alice exists
   Given the user bob doesn't exist
-  When I go to the Users and Groups page
-  And I rename the user alice to bob
+  When I rename the user alice to bob
   Then alice should not be listed as a user
   Then bob should be listed as a user
 
 Scenario: Delete user
   Given I'm a logged in user
   Given the user alice exists
-  When I go to the Users and Groups page
-  And I delete the user alice
+  When I delete the user alice
   Then alice should not be listed as a user

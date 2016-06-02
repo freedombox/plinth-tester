@@ -27,17 +27,20 @@ def go_to_configuration(browser):
 
 @when(parsers.parse('I change the hostname to {hostname:w}'))
 def change_hostname(browser, hostname):
+    nav_to_sys_module(browser, 'config')
     browser.find_by_id('id_configuration-hostname').fill(hostname)
     submit(browser)
 
 
 @when(parsers.parse('I change the domain name to {domain:w}'))
 def change_domain_name(browser, domain):
+    nav_to_sys_module(browser, 'config')
     browser.find_by_id('id_configuration-domainname').fill(domain)
     submit(browser)
 
 
 def select_language(browser, language_code):
+    nav_to_sys_module(browser, 'config')
     browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="' \
         + language_code + '"]'

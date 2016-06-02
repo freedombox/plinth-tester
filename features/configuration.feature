@@ -20,96 +20,80 @@ Feature: Configuration
 
 Scenario: Change hostname
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the hostname to mybox
+  When I change the hostname to mybox
   Then the hostname should be mybox
 
 Scenario: Change domain name
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the domain name to mydomain
+  When I change the domain name to mydomain
   Then the domain name should be mydomain
 
 Scenario: Change language to Danish
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Danish
+  When I change the language to Danish
   Then Plinth language should be Danish
 
 Scenario: Change language to German
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to German
+  When I change the language to German
   Then Plinth language should be German
 
 Scenario: Change language to Spanish
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Spanish
+  When I change the language to Spanish
   Then Plinth language should be Spanish
 
 Scenario: Change language to French
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to French
+  When I change the language to French
   Then Plinth language should be French
 
 Scenario: Change language to Italian
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Italian
+  When I change the language to Italian
   Then Plinth language should be Italian
 
 Scenario: Change language to Norwegian Bokmål
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Norwegian Bokmål
+  When I change the language to Norwegian Bokmål
   Then Plinth language should be Norwegian Bokmål
 
 Scenario: Change language to Dutch
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Dutch
+  When I change the language to Dutch
   Then Plinth language should be Dutch
 
 Scenario: Change language to Polish
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Polish
+  When I change the language to Polish
   Then Plinth language should be Polish
 
 Scenario: Change language to Portuguese
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Portuguese
+  When I change the language to Portuguese
   Then Plinth language should be Portuguese
 
 Scenario: Change language to Russian
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Russian
+  When I change the language to Russian
   Then Plinth language should be Russian
 
 Scenario: Change language to Swedish
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Swedish
+  When I change the language to Swedish
   Then Plinth language should be Swedish
 
 Scenario: Change language to Telugu
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Telugu
+  When I change the language to Telugu
   Then Plinth language should be Telugu
 
 Scenario: Change language to Turkish
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Turkish
+  When I change the language to Turkish
   Then Plinth language should be Turkish
 
 Scenario: Change language to Simplified Chinese
   Given I'm a logged in user
-  When I go to the Configuration page
-  And I change the language to Simplified Chinese
+  When I change the language to Simplified Chinese
   Then Plinth language should be Simplified Chinese
