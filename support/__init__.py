@@ -15,23 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenario
-
-from step_definitions.interface import *
-from step_definitions.system import *
-from support import feature
+import configparser
 
 
-@scenario(feature('users_and_groups'), 'Create user')
-def test_create_user():
-    pass
-
-
-@scenario(feature('users_and_groups'), 'Rename user')
-def test_rename_user():
-    pass
-
-
-@scenario(feature('users_and_groups'), 'Delete user')
-def test_delete_user():
-    pass
+config = configparser.ConfigParser()
+config.read('config.ini')

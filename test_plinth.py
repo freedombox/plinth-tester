@@ -15,12 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import configparser
+from pytest_bdd import scenarios
+
+from step_definitions.interface import *
+from step_definitions.system import *
 
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-
-def feature(name):
-    return '../features/' + name + '.feature'
+scenarios('features')
