@@ -37,3 +37,32 @@ def nav_to_sys_module(browser, module):
 
 def submit(browser):
     browser.find_by_value('Submit').click()
+
+
+def create_user(browser, name, password):
+    nav_to_sys_module(browser, 'users')
+    browser.find_link_by_href('/plinth/sys/users/create/').first.click()
+    browser.find_by_id('id_username').fill(name)
+    browser.find_by_id('id_password1').fill(password)
+    browser.find_by_id('id_password2').fill(password)
+    browser.find_by_value('Create User').click()
+
+
+def rename_user(browser, old_name, new_name):
+    nav_to_sys_module(browser, 'users')
+    browser.find_link_by_href(
+        '/plinth/sys/users/' + old_name + '/edit/').first.click()
+    browser.find_by_id('id_username').fill(new_name)
+    browser.find_by_value('Save Changes').click()
+
+
+def delete_user(browser, name):
+    nav_to_sys_module(browser, 'users')
+    browser.find_link_by_href(
+        '/plinth/sys/users/' + name + '/delete/').first.click()
+    browser.find_by_value('Delete ' + name).click()
+
+
+def is_user(browser, name):
+    nav_to_sys_module(browser, 'users')
+    return browser.is_text_present(name)

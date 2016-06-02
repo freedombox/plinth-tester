@@ -64,4 +64,4 @@ def domain_name_should_be(browser, domain):
 
 @then('Plinth language should be <language>')
 def plinth_language_should_be(browser, language):
-    assert(system.check_language(browser, language_codes[language]) == True)
+    assert(system.check_language(browser, language_codes[language]))

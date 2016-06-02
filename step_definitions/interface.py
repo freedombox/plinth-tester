@@ -47,46 +47,27 @@ def test_user_exists(browser, name):
         create_user(browser, name, 'secret')
 
 
-@when('I go to the Users and Groups page')
-def go_to_users_and_groups(browser):
-    interface.nav_to_sys_module(browser, 'users')
-
-
 @when(parsers.parse(
     'I create a user named {name:w} with password {password:w}'))
 def create_user(browser, name, password):
-    interface.nav_to_sys_module(browser, 'users')
-    browser.find_link_by_href('/plinth/sys/users/create/').first.click()
-    browser.find_by_id('id_username').fill(name)
-    browser.find_by_id('id_password1').fill(password)
-    browser.find_by_id('id_password2').fill(password)
-    browser.find_by_value('Create User').click()
+    interface.create_user(browser, name, password)
 
 
 @when(parsers.parse('I rename the user {old_name:w} to {new_name:w}'))
 def rename_user(browser, old_name, new_name):
-    interface.nav_to_sys_module(browser, 'users')
-    browser.find_link_by_href(
-        '/plinth/sys/users/' + old_name + '/edit/').first.click()
-    browser.find_by_id('id_username').fill(new_name)
-    browser.find_by_value('Save Changes').click()
+    interface.rename_user(browser, old_name, new_name)
 
 
 @when(parsers.parse('I delete the user {name:w}'))
 def delete_user(browser, name):
-    interface.nav_to_sys_module(browser, 'users')
-    browser.find_link_by_href(
-        '/plinth/sys/users/' + name + '/delete/').first.click()
-    browser.find_by_value('Delete ' + name).click()
+    interface.delete_user(browser, name)
 
 
 @then(parsers.parse('{name:w} should be listed as a user'))
 def new_user_is_listed(browser, name):
-    interface.nav_to_sys_module(browser, 'users')
-    assert browser.is_text_present(name)
+    assert interface.is_user(browser, name)
 
 
 @then(parsers.parse('{name:w} should not be listed as a user'))
 def new_user_is_not_listed(browser, name):
-    interface.nav_to_sys_module(browser, 'users')
-    assert not browser.is_text_present(name)
+    assert not interface.is_user(browser, name)
