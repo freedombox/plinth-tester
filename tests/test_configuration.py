@@ -17,8 +17,8 @@
 
 from pytest_bdd import scenario
 
-from steps.common import *
-from steps.configuration import *
+from step_definitions.common import *
+from step_definitions.configuration import *
 from support import feature
 
 
