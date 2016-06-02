@@ -52,11 +52,6 @@ def test_change_language_to_french():
     pass
 
 
-@scenario(feature('configuration'), 'Change language to Italian')
-def test_change_language_to_italian():
-    pass
-
-
 @scenario(feature('configuration'), 'Change language to Norwegian Bokmål')
 def test_change_language_to_norwegian_bokmål():
     pass

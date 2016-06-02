@@ -48,11 +48,6 @@ Scenario: Change language to French
   When I change the language to French
   Then Plinth language should be French
 
-Scenario: Change language to Italian
-  Given I'm a logged in user
-  When I change the language to Italian
-  Then Plinth language should be Italian
-
 Scenario: Change language to Norwegian Bokmål
   Given I'm a logged in user
   When I change the language to Norwegian Bokmål
