@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from . import nav_to_sys_module, submit
+from .interface import nav_to_sys_module, submit
 
 
 config_page_title_language_map = {

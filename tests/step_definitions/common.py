@@ -17,10 +17,11 @@
 
 from pytest_bdd import given
 
-from support import config, login
+from support import config, interface
 
 
 @given("I'm a logged in user")
 def logged_in_user(browser):
-    login(browser, config['DEFAULT']['url'], config['DEFAULT']['username'],
-          config['DEFAULT']['password'])
+    interface.login(browser, config['DEFAULT']['url'],
+                    config['DEFAULT']['username'],
+                    config['DEFAULT']['password'])

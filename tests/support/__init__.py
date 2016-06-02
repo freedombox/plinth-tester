@@ -24,27 +24,3 @@ config.read('config.ini')
 
 def feature(name):
     return '../features/' + name + '.feature'
-
-
-def login(browser, url, username, password):
-    browser.visit(url)
-    login = browser.find_by_value('Login')
-    if login:
-        browser.fill('username', username)
-        browser.fill('password', password)
-        login.click()
-    else:
-        browser.find_link_by_href('/plinth/firstboot/state1/').first.click()
-        browser.fill('username', username)
-        browser.find_by_id('id_password1').fill(password)
-        browser.find_by_id('id_password2').fill(password)
-        browser.find_by_value('Box it up!').click()
-
-
-def nav_to_sys_module(browser, module):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/' + module + '/').first.click()
-
-
-def submit(browser):
-    browser.find_by_value('Submit').click()
