@@ -17,7 +17,14 @@
 
 from pytest_bdd import parsers, given, when, then
 
-from support import interface
+from support import config, interface
+
+
+@given("I'm a logged in user")
+def logged_in_user(browser):
+    interface.login(browser, config['DEFAULT']['url'],
+                    config['DEFAULT']['username'],
+                    config['DEFAULT']['password'])
 
 
 @given(parsers.parse("the user {name:w} doesn't exist"))
