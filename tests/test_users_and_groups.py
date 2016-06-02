@@ -19,7 +19,7 @@ from pytest_bdd import scenario
 
 from steps.common import *
 from steps.users_and_groups import *
-from support.util import feature
+from support import feature
 
 
 @scenario(feature('users_and_groups'), 'Create user')

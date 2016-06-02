@@ -19,7 +19,7 @@ from pytest_bdd import scenario
 
 from steps.common import *
 from steps.configuration import *
-from support.util import feature
+from support import feature
 
 
 @scenario(feature('configuration'), 'Change hostname')

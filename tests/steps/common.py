@@ -17,20 +17,10 @@
 
 from pytest_bdd import given
 
-from support.util import config
+from support import config, login
 
 
 @given("I'm a logged in user")
 def logged_in_user(browser):
-    browser.visit(config['DEFAULT']['url'])
-    login = browser.find_by_value('Login')
-    if login:
-        browser.fill('username', config['DEFAULT']['username'])
-        browser.fill('password', config['DEFAULT']['password'])
-        login.click()
-    else:
-        browser.find_link_by_href('/plinth/firstboot/state1/').first.click()
-        browser.fill('username', config['DEFAULT']['username'])
-        browser.find_by_id('id_password1').fill(config['DEFAULT']['password'])
-        browser.find_by_id('id_password2').fill(config['DEFAULT']['password'])
-        browser.find_by_value('Box it up!').click()
+    login(browser, config['DEFAULT']['url'], config['DEFAULT']['username'],
+          config['DEFAULT']['password'])

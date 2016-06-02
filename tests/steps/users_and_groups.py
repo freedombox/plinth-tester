@@ -50,64 +50,38 @@ def go_to_users_and_groups(browser):
     browser.find_link_by_href('/plinth/sys/users/').first.click()
 
 
-@when('I go to the Users tab')
-def go_to_users(browser):
-    browser.find_link_by_href('/plinth/sys/users/').first.click()
+@when(parsers.parse(
+    'I create a user named {name:w} with password {password:w}'))
+def create_user(browser, name, password):
+    browser.find_link_by_href('/plinth/sys/users/create/').first.click()
+    browser.find_by_id('id_username').fill(name)
+    browser.find_by_id('id_password1').fill(password)
+    browser.find_by_id('id_password2').fill(password)
+    browser.find_by_value('Create User').click()
 
 
-@when(parsers.parse('I select the user {name:w}'))
-def select_user(browser, name):
+@when(parsers.parse('I rename the user {old_name:w} to {new_name:w}'))
+def rename_user(browser, old_name, new_name):
     browser.find_link_by_href(
-        '/plinth/sys/users/' + name + '/edit/').first.click()
-
-
-@when('I press the Save Changes button')
-def save_changes(browser, name):
+        '/plinth/sys/users/' + old_name + '/edit/').first.click()
+    browser.find_by_id('id_username').fill(new_name)
     browser.find_by_value('Save Changes').click()
 
 
-@when(parsers.parse('I press the delete user button for {name:w}'))
+@when(parsers.parse('I delete the user {name:w}'))
 def delete_user(browser, name):
     browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/delete/').first.click()
-
-
-@when(parsers.parse('I confirm to delete the user {name:w}'))
-def confirm_delete_user(browser, name):
     browser.find_by_value('Delete ' + name).click()
-
-
-@when('I go to the Create User tab')
-def go_to_create_user(browser):
-    browser.find_link_by_href('/plinth/sys/users/create/').first.click()
-
-
-@when(parsers.parse('I fill in {name:w} for the username'))
-def fill_username(browser, name):
-    browser.find_by_id('id_username').fill(name)
-
-
-@when(parsers.parse('I fill in {password:w} for the password'))
-def fill_password(browser, password):
-    browser.find_by_id('id_password1').fill(password)
-
-
-@when(parsers.parse(
-    'I fill in {password:w} for the password confirmation'))
-def fill_password_confirmation(browser, password):
-    browser.find_by_id('id_password2').fill(password)
-
-
-@when('I press the Create User button')
-def create_user(browser):
-    browser.find_by_value('Create User').click()
 
 
 @then(parsers.parse('{name:w} should be listed as a user'))
 def new_user_is_listed(browser, name):
+    browser.find_link_by_href('/plinth/sys/users/').first.click()
     assert browser.is_text_present(name)
 
 
 @then(parsers.parse('{name:w} should not be listed as a user'))
 def new_user_is_not_listed(browser, name):
+    browser.find_link_by_href('/plinth/sys/users/').first.click()
     assert not browser.is_text_present(name)

@@ -24,208 +24,219 @@ def go_to_configuration(browser):
     browser.find_link_by_href('/plinth/sys/config/').first.click()
 
 
-@when(parsers.parse('I fill in {hostname:w} for the hostname'))
-def fill_hostname(browser, hostname):
+@when(parsers.parse('I change the hostname to {hostname:w}'))
+def change_hostname(browser, hostname):
     browser.find_by_id('id_configuration-hostname').fill(hostname)
+    browser.find_by_value('Submit').click()
 
 
-@when(parsers.parse('I fill in {domain:w} for the domain name'))
-def fill_domain(browser, domain):
+@when(parsers.parse('I change the domain name to {domain:w}'))
+def change_domain_name(browser, domain):
     browser.find_by_id('id_configuration-domainname').fill(domain)
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Danish language')
-def select_language_danish(browser):
+@when('I change the language to Danish')
+def change_language_to_danish(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="da"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select German language')
-def select_language_german(browser):
+@when('I change the language to German')
+def change_language_to_german(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="de"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Spanish language')
-def select_language_spanish(browser):
+@when('I change the language to Spanish')
+def change_language_to_spanish(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="es"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select French language')
-def select_language_french(browser):
+@when('I change the language to French')
+def change_language_to_french(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="fr"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Italian language')
-def select_language_italian(browser):
+@when('I change the language to Italian')
+def change_language_to_italian(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="it"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Norwegian Bokmål language')
-def select_language_norwegian_bokmål(browser):
+@when('I change the language to Norwegian Bokmål')
+def change_language_to_norwegian_bokmål(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="nb"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Dutch language')
-def select_language_dutch(browser):
+@when('I change the language to Dutch')
+def change_language_to_dutch(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="nl"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Polish language')
-def select_language_polish(browser):
+@when('I change the language to Polish')
+def change_language_to_polish(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="pl"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Portuguese language')
-def select_language_portuguese(browser):
+@when('I change the language to Portuguese')
+def change_language_to_portuguese(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="pt"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Russian language')
-def select_language_russian(browser):
+@when('I change the language to Russian')
+def change_language_to_russian(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="ru"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Swedish language')
-def select_language_swedish(browser):
+@when('I change the language to Swedish')
+def change_language_to_swedish(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="sv"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Telugu language')
-def select_language_telugu(browser):
+@when('I change the language to Telugu')
+def change_language_to_telugu(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="te"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Turkish language')
-def select_language_turkish(browser):
+@when('I change the language to Turkish')
+def change_language_to_turkish(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="tr"]'
     ).first
     lang.click()
+    browser.find_by_value('Submit').click()
 
 
-@when('I select Simplified Chinese language')
-def select_language_simplified_chinese(browser):
+@when('I change the language to Simplified Chinese')
+def change_language_to_simplified_chinese(browser):
     lang = browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="zh-hans"]'
     ).first
     lang.click()
-
-
-@when('I press the Submit button')
-def submit_form(browser):
     browser.find_by_value('Submit').click()
 
 
 @then(parsers.parse('the hostname should be {hostname:w}'))
-def hostname_is_new_value(browser, hostname):
+def hostname_should_be(browser, hostname):
     assert(browser.find_by_id('id_configuration-hostname').value == hostname)
 
 
 @then(parsers.parse('the domain name should be {domain:w}'))
-def domain_name_is_new_value(browser, domain):
+def domain_name_should_be(browser, domain):
     assert(browser.find_by_id('id_configuration-domainname').value == domain)
 
 
-@then('the Configuration page title should be in Danish')
-def configuration_page_title_is_in_danish(browser):
+@then('Plinth language should be Danish')
+def plinth_language_should_be_danish(browser):
     assert(browser.title == 'Generel Konfiguration')
 
 
-@then('the Configuration page title should be in German')
-def configuration_page_title_is_in_german(browser):
+@then('Plinth language should be German')
+def plinth_language_should_be_german(browser):
     assert(browser.title == 'Allgemeine Konfiguration')
 
 
-@then('the Configuration page title should be in Spanish')
-def configuration_page_title_is_in_spanish(browser):
+@then('Plinth language should be Spanish')
+def plinth_language_should_be_spanish(browser):
     assert(browser.title == 'Configuración general')
 
 
-@then('the Configuration page title should be in French')
-def configuration_page_title_is_in_french(browser):
+@then('Plinth language should be French')
+def plinth_language_should_be_french(browser):
     assert(browser.title == 'Configuration générale')
 
 
-@then('the Configuration page title should be in Italian')
-def configuration_page_title_is_in_italian(browser):
+@then('Plinth language should be Italian')
+def plinth_language_should_be_italian(browser):
     assert(browser.title == 'General Configuration')
 
 
-@then('the Configuration page title should be in Norwegian Bokmål')
-def configuration_page_title_is_in_norwegian_bokmål(browser):
+@then('Plinth language should be Norwegian Bokmål')
+def plinth_language_should_be_norwegian_bokmål(browser):
     assert(browser.title == 'Generelt oppsett')
 
 
-@then('the Configuration page title should be in Dutch')
-def configuration_page_title_is_in_dutch(browser):
+@then('Plinth language should be Dutch')
+def plinth_language_should_be_dutch(browser):
     assert(browser.title == 'Algemene Instellingen')
 
 
-@then('the Configuration page title should be in Polish')
-def configuration_page_title_is_in_polish(browser):
+@then('Plinth language should be Polish')
+def plinth_language_should_be_polish(browser):
     assert(browser.title == 'Ustawienia główne')
 
 
-@then('the Configuration page title should be in Portuguese')
-def configuration_page_title_is_in_portuguese(browser):
+@then('Plinth language should be Portuguese')
+def plinth_language_should_be_portuguese(browser):
     assert(browser.title == 'Configuração Geral')
 
 
-@then('the Configuration page title should be in Russian')
-def configuration_page_title_is_in_russian(browser):
+@then('Plinth language should be Russian')
+def plinth_language_should_be_russian(browser):
     assert(browser.title == 'Общие настройки')
 
 
-@then('the Configuration page title should be in Swedish')
-def configuration_page_title_is_in_swedish(browser):
+@then('Plinth language should be Swedish')
+def plinth_language_should_be_swedish(browser):
     assert(browser.title == 'Allmän Konfiguration')
 
 
-@then('the Configuration page title should be in Telugu')
-def configuration_page_title_is_in_telugu(browser):
+@then('Plinth language should be Telugu')
+def plinth_language_should_be_telugu(browser):
     assert(browser.title == 'సాధారణ ఆకృతీకరణ')
 
 
-@then('the Configuration page title should be in Turkish')
-def configuration_page_title_is_in_turkish(browser):
+@then('Plinth language should be Turkish')
+def plinth_language_should_be_turkish(browser):
     assert(browser.title == 'Genel Yapılandırma')
 
 
-@then('the Configuration page title should be in Simplified Chinese')
-def configuration_page_title_is_in_simplified_chinese(browser):
+@then('Plinth language should be Simplified Chinese')
+def plinth_language_should_be_simplified_chinese(browser):
     assert(browser.title == '常规配置')
