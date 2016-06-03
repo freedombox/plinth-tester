@@ -20,14 +20,21 @@ from time import sleep
 from support import config
 
 
+# unlisted sites just use '/' + site_name as url
 site_url = {
-    'jwchat': '/jwchat',
     'wiki': '/ikiwiki',
 }
 
 
+def get_site_url(site_name):
+    url = '/' + site_name
+    if site_name in site_url:
+        url = site_url[site_name]
+    return url
+
+
 def is_available(browser, site_name):
-    browser.visit(config['DEFAULT']['url'] + site_url[site_name])
+    browser.visit(config['DEFAULT']['url'] + get_site_url(site_name))
     sleep(2)
     browser.reload()
     return browser.title != '404 Not Found'
