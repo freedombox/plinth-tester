@@ -20,15 +20,21 @@ from time import sleep
 from support import interface
 
 
+# unlisted apps just use the app_name as module name
 app_module = {
-    'mumble': 'mumble',
-    'xmpp': 'xmpp',
     'wiki': 'ikiwiki',
 }
 
 
+def get_app_module(app_name):
+    module = app_name
+    if app_name in app_module:
+        module = app_module[app_name]
+    return module
+
+
 def install(browser, app_name):
-    interface.nav_to_apps_module(browser, app_module[app_name])
+    interface.nav_to_apps_module(browser, get_app_module(app_name))
     install = browser.find_by_value('Install')
     if install:
         install.click()
@@ -38,12 +44,12 @@ def install(browser, app_name):
 
 
 def enable(browser, app_name):
-    interface.nav_to_apps_module(browser, app_module[app_name])
+    interface.nav_to_apps_module(browser, get_app_module(app_name))
     browser.find_by_id('id_is_enabled').check()
     browser.find_by_value('Update setup').click()
 
 
 def disable(browser, app_name):
-    interface.nav_to_apps_module(browser, app_module[app_name])
+    interface.nav_to_apps_module(browser, get_app_module(app_name))
     browser.find_by_id('id_is_enabled').uncheck()
     browser.find_by_value('Update setup').click()
