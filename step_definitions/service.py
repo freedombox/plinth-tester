@@ -15,13 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
+from pytest_bdd import parsers, then
 
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.service import *
-from step_definitions.site import *
-from step_definitions.system import *
+from support import service
 
 
-scenarios('features')
+@then(parsers.parse('the {service_name:w} service should be running'))
+def service_should_be_running(browser, service_name):
+    assert service.is_running(browser, service_name)
+
+
+@then(parsers.parse('the {service_name:w} service should not be running'))
+def service_should_not_be_running(browser, service_name):
+    assert not service.is_running(browser, service_name)

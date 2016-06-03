@@ -21,6 +21,7 @@ from support import interface
 
 
 app_module = {
+    'mumble': 'mumble',
     'xmpp': 'xmpp',
     'wiki': 'ikiwiki',
 }

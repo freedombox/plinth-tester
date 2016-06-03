@@ -15,13 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
+Feature: Voice Chat
+  Run Mumble voice chat server.
 
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.service import *
-from step_definitions.site import *
-from step_definitions.system import *
+Background:
+  Given I'm a logged in user
+  Given the mumble application is installed
 
+Scenario: Enable mumble application
+  Given the mumble application is disabled
+  When I enable the mumble application
+  Then the mumble service should be running
 
-scenarios('features')
+Scenario: Disable mumble application
+  Given the mumble application is enabled
+  When I disable the mumble application
+  Then the mumble service should not be running

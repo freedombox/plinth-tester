@@ -15,13 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
-
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.service import *
-from step_definitions.site import *
-from step_definitions.system import *
+from support import interface
 
 
-scenarios('features')
+def is_running(browser, service_name):
+    interface.nav_to_apps_module(browser, service_name)
+    return browser.is_text_present('is running')
