@@ -15,12 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
+Feature: Wiki and Blog
+  Manage wikis and blogs.
 
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.site import *
-from step_definitions.system import *
+Background:
+  Given I'm a logged in user
+  Given the wiki application is installed
 
+Scenario: Enable wiki application
+  Given the wiki application is disabled
+  When I enable the wiki application
+  Then the wiki site should be available
 
-scenarios('features')
+Scenario: Disable wiki application
+  Given the wiki application is enabled
+  When I disable the wiki application
+  Then the wiki site should not be available

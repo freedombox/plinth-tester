@@ -17,6 +17,9 @@
 
 def login(browser, url, username, password):
     browser.visit(url)
+    if browser.find_by_id('logout-nojs'):
+        return  # already logged in
+
     login = browser.find_by_value('Login')
     if login:
         browser.fill('username', username)
@@ -28,6 +31,11 @@ def login(browser, url, username, password):
         browser.find_by_id('id_password1').fill(password)
         browser.find_by_id('id_password2').fill(password)
         browser.find_by_value('Box it up!').click()
+
+
+def nav_to_apps_module(browser, module):
+    browser.find_link_by_href('/plinth/').first.click()
+    browser.find_link_by_href('/plinth/apps/' + module + '/').first.click()
 
 
 def nav_to_sys_module(browser, module):

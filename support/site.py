@@ -15,12 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
+from time import sleep
 
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.site import *
-from step_definitions.system import *
+from support import config
 
 
-scenarios('features')
+site_url = {
+    'wiki': '/ikiwiki',
+}
+
+
+def is_available(browser, site_name):
+    browser.visit(config['DEFAULT']['url'] + site_url[site_name])
+    sleep(2)
+    browser.reload()
+    return browser.title != '404 Not Found'

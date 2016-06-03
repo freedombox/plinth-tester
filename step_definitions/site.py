@@ -15,12 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import scenarios
+from pytest_bdd import parsers, then
 
-from step_definitions.application import *
-from step_definitions.interface import *
-from step_definitions.site import *
-from step_definitions.system import *
+from support import site
 
 
-scenarios('features')
+@then(parsers.parse('the {site_name:w} site should be available'))
+def site_should_be_available(browser, site_name):
+    assert site.is_available(browser, site_name)
+
+
+@then(parsers.parse('the {site_name:w} site should not be available'))
+def site_should_not_be_available(browser, site_name):
+    assert not site.is_available(browser, site_name)
