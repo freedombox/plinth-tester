@@ -21,6 +21,7 @@ from support import interface
 
 
 app_module = {
+    'xmpp': 'xmpp',
     'wiki': 'ikiwiki',
 }
 
@@ -32,6 +33,7 @@ def install(browser, app_name):
         install.click()
         while browser.is_text_present('Installing'):
             sleep(1)
+        sleep(2)
 
 
 def enable(browser, app_name):

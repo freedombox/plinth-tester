@@ -15,19 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from time import sleep
+Feature: Chat Server
+  Run XMPP chat server.
 
-from support import config
+Background:
+  Given I'm a logged in user
+  Given the xmpp application is installed
 
+Scenario: Enable xmpp application
+  Given the xmpp application is disabled
+  When I enable the xmpp application
+  Then the jwchat site should be available
 
-site_url = {
-    'jwchat': '/jwchat',
-    'wiki': '/ikiwiki',
-}
-
-
-def is_available(browser, site_name):
-    browser.visit(config['DEFAULT']['url'] + site_url[site_name])
-    sleep(2)
-    browser.reload()
-    return browser.title != '404 Not Found'
+Scenario: Disable xmpp application
+  Given the xmpp application is enabled
+  When I disable the xmpp application
+  Then the jwchat site should not be available
