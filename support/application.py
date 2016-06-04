@@ -25,6 +25,14 @@ app_module = {
     'wiki': 'ikiwiki',
 }
 
+app_checkbox_id = {
+    'tor': 'id_tor-enabled',
+}
+
+app_config_updating_text = {
+    'tor': 'Tor configuration is being updated',
+}
+
 
 def get_app_module(app_name):
     module = app_name
@@ -33,23 +41,40 @@ def get_app_module(app_name):
     return module
 
 
+def get_app_checkbox_id(app_name):
+    checkbox_id = 'id_is_enabled'
+    if app_name in app_checkbox_id:
+        checkbox_id = app_checkbox_id[app_name]
+    return checkbox_id
+
+
 def install(browser, app_name):
     interface.nav_to_apps_module(browser, get_app_module(app_name))
     install = browser.find_by_value('Install')
     if install:
         install.click()
-        while browser.is_text_present('Installing'):
+        while browser.is_text_present('Installing') \
+              or browser.is_text_present('Performing post-install operation'):
             sleep(1)
         sleep(2)
 
 
 def enable(browser, app_name):
     interface.nav_to_apps_module(browser, get_app_module(app_name))
-    browser.find_by_id('id_is_enabled').check()
+    browser.find_by_id(get_app_checkbox_id(app_name)).check()
     browser.find_by_value('Update setup').click()
+    if app_name in app_config_updating_text:
+        wait_for_config_update(browser, app_name)
 
 
 def disable(browser, app_name):
     interface.nav_to_apps_module(browser, get_app_module(app_name))
-    browser.find_by_id('id_is_enabled').uncheck()
+    browser.find_by_id(get_app_checkbox_id(app_name)).uncheck()
     browser.find_by_value('Update setup').click()
+    if app_name == app_config_updating_text:
+        wait_for_config_update(browser, app_name)
+
+
+def wait_for_config_update(browser, app_name):
+    while browser.is_text_present(app_config_updating_text['tor']):
+        sleep(1)

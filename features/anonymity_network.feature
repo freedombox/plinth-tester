@@ -15,26 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from time import sleep
+Feature: Anonymity Network
+  Manage Tor configuration.
 
-from support import config
+Background:
+  Given I'm a logged in user
+  Given the tor application is installed
 
+Scenario: Enable tor application
+  Given the tor application is disabled
+  When I enable the tor application
+  Then the tor service should be running
 
-# unlisted sites just use '/' + site_name as url
-site_url = {
-    'wiki': '/ikiwiki',
-}
-
-
-def get_site_url(site_name):
-    url = '/' + site_name
-    if site_name in site_url:
-        url = site_url[site_name]
-    return url
-
-
-def is_available(browser, site_name):
-    browser.visit(config['DEFAULT']['url'] + get_site_url(site_name))
-    sleep(3)
-    browser.reload()
-    return browser.title != '404 Not Found'
+Scenario: Disable tor application
+  Given the tor application is enabled
+  When I disable the tor application
+  Then the tor service should not be running
