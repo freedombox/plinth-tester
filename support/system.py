@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from .interface import nav_to_sys_module, submit
+from .interface import nav_to_module, submit
 
 
 config_page_title_language_map = {
@@ -36,29 +36,29 @@ config_page_title_language_map = {
 
 
 def get_hostname(browser):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     return browser.find_by_id('id_configuration-hostname').value
 
 
 def set_hostname(browser, hostname):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     browser.find_by_id('id_configuration-hostname').fill(hostname)
     submit(browser)
 
 
 def get_domain_name(browser):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     return browser.find_by_id('id_configuration-domainname').value
 
 
 def set_domain_name(browser, domain_name):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     browser.find_by_id('id_configuration-domainname').fill(domain_name)
     submit(browser)
 
 
 def set_language(browser, language_code):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     browser.find_by_xpath(
         '//select[@id="id_configuration-language"]//option[@value="' \
         + language_code + '"]'
@@ -67,5 +67,5 @@ def set_language(browser, language_code):
 
 
 def check_language(browser, language_code):
-    nav_to_sys_module(browser, 'config')
+    nav_to_module(browser, 'config')
     return browser.title == config_page_title_language_map[language_code]

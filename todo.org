@@ -12,8 +12,8 @@
 ** TODO Scenario: Enable automatic upgrades
 
 * Feature: Date & Time
-** TODO Scenario: Disable application
-** TODO Scenario: Enable application
+** DONE Scenario: Disable application
+** DONE Scenario: Enable application
 ** TODO Scenario: Change timezone
 
 * Feature: Service Discovery
@@ -28,8 +28,8 @@
 ** TODO Scenario: View the about page
 
 * Feature: Tor
-** TODO Scenario: Disable Tor
-** TODO Scenario: Enable Tor
+** DONE Scenario: Disable Tor
+** DONE Scenario: Enable Tor
 ** TODO Scenario: Disable Tor Hidden Service
 ** TODO Scenario: Enable Tor Hidden Service
 ** TODO Scenario: Disable software package download over Tor

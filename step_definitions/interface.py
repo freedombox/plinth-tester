@@ -29,7 +29,7 @@ def logged_in_user(browser):
 
 @given(parsers.parse("the user {name:w} doesn't exist"))
 def new_user_does_not_exist(browser, name):
-    interface.nav_to_sys_module(browser, 'users')
+    interface.nav_to_module(browser, 'users')
     delete_link = browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/delete/')
     if delete_link:
@@ -40,7 +40,7 @@ def new_user_does_not_exist(browser, name):
 
 @given(parsers.parse('the user {name:w} exists'))
 def test_user_exists(browser, name):
-    interface.nav_to_sys_module(browser, 'users')
+    interface.nav_to_module(browser, 'users')
     user_link = browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/edit/')
     if not user_link:

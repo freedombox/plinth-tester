@@ -35,6 +35,16 @@ def application_is_disabled(browser, app_name):
     application.disable(browser, app_name)
 
 
+@given(parsers.parse('the network time application is enabled'))
+def ntp_is_enabled(browser):
+    application.enable(browser, 'ntp')
+
+
+@given(parsers.parse('the network time application is disabled'))
+def ntp_is_disabled(browser):
+    application.disable(browser, 'ntp')
+
+
 @when(parsers.parse('I enable the {app_name:w} application'))
 def enable_application(browser, app_name):
     application.enable(browser, app_name)
@@ -43,3 +53,13 @@ def enable_application(browser, app_name):
 @when(parsers.parse('I disable the {app_name:w} application'))
 def disable_application(browser, app_name):
     application.disable(browser, app_name)
+
+
+@when(parsers.parse('I enable the network time application'))
+def enable_ntp(browser):
+    application.enable(browser, 'ntp')
+
+
+@when(parsers.parse('I disable the network time application'))
+def disable_ntp(browser):
+    application.disable(browser, 'ntp')

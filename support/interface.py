@@ -15,6 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+sys_modules = ['config', 'users', 'networks', 'names', 'letsencrypt',
+               'upgrades', 'diagnostics', 'firewall', 'datetime', 'avahi',
+               'monkeysphere', 'power']
+
+
 def login(browser, url, username, password):
     browser.visit(url)
     if browser.find_by_id('logout-nojs'):
@@ -33,14 +38,13 @@ def login(browser, url, username, password):
         browser.find_by_value('Box it up!').click()
 
 
-def nav_to_apps_module(browser, module):
+def nav_to_module(browser, module):
     browser.find_link_by_href('/plinth/').first.click()
-    browser.find_link_by_href('/plinth/apps/' + module + '/').first.click()
-
-
-def nav_to_sys_module(browser, module):
-    browser.find_link_by_href('/plinth/sys/').first.click()
-    browser.find_link_by_href('/plinth/sys/' + module + '/').first.click()
+    if module in sys_modules:
+        browser.find_link_by_href('/plinth/sys/').first.click()
+        browser.find_link_by_href('/plinth/sys/' + module + '/').first.click()
+    else:
+        browser.find_link_by_href('/plinth/apps/' + module + '/').first.click()
 
 
 def submit(browser):
@@ -48,7 +52,7 @@ def submit(browser):
 
 
 def create_user(browser, name, password):
-    nav_to_sys_module(browser, 'users')
+    nav_to_module(browser, 'users')
     browser.find_link_by_href('/plinth/sys/users/create/').first.click()
     browser.find_by_id('id_username').fill(name)
     browser.find_by_id('id_password1').fill(password)
@@ -57,7 +61,7 @@ def create_user(browser, name, password):
 
 
 def rename_user(browser, old_name, new_name):
-    nav_to_sys_module(browser, 'users')
+    nav_to_module(browser, 'users')
     browser.find_link_by_href(
         '/plinth/sys/users/' + old_name + '/edit/').first.click()
     browser.find_by_id('id_username').fill(new_name)
@@ -65,12 +69,12 @@ def rename_user(browser, old_name, new_name):
 
 
 def delete_user(browser, name):
-    nav_to_sys_module(browser, 'users')
+    nav_to_module(browser, 'users')
     browser.find_link_by_href(
         '/plinth/sys/users/' + name + '/delete/').first.click()
     browser.find_by_value('Delete ' + name).click()
 
 
 def is_user(browser, name):
-    nav_to_sys_module(browser, 'users')
+    nav_to_module(browser, 'users')
     return browser.is_text_present(name)

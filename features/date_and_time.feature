@@ -15,22 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from support import interface
+@essential
+Feature: Date and Time
+  Configure time zone and network time service.
 
+Background:
+  Given I'm a logged in user
 
-# unlisted services just use the service_name as module name
-service_module = {
-    'ntp': 'datetime',
-}
+Scenario: Enable network time application
+  Given the network time application is disabled
+  When I enable the network time application
+  Then the network time service should be running
 
-
-def get_service_module(service_name):
-    module = service_name
-    if service_name in service_module:
-        module = service_module[service_name]
-    return module
-
-
-def is_running(browser, service_name):
-    interface.nav_to_module(browser, get_service_module(service_name))
-    return browser.is_text_present('is running')
+Scenario: Disable network time application
+  Given the network time application is enabled
+  When I disable the network time application
+  Then the network time service should not be running

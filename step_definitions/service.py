@@ -28,3 +28,13 @@ def service_should_be_running(browser, service_name):
 @then(parsers.parse('the {service_name:w} service should not be running'))
 def service_should_not_be_running(browser, service_name):
     assert not service.is_running(browser, service_name)
+
+
+@then(parsers.parse('the network time service should be running'))
+def ntp_should_be_running(browser):
+    assert service.is_running(browser, 'ntp')
+
+
+@then(parsers.parse('the network time service should not be running'))
+def ntp_should_not_be_running(browser):
+    assert not service.is_running(browser, 'ntp')

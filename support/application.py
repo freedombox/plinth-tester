@@ -22,6 +22,7 @@ from support import interface
 
 # unlisted apps just use the app_name as module name
 app_module = {
+    'ntp': 'datetime',
     'wiki': 'ikiwiki',
 }
 
@@ -49,7 +50,7 @@ def get_app_checkbox_id(app_name):
 
 
 def install(browser, app_name):
-    interface.nav_to_apps_module(browser, get_app_module(app_name))
+    interface.nav_to_module(browser, get_app_module(app_name))
     install = browser.find_by_value('Install')
     if install:
         install.click()
@@ -60,7 +61,7 @@ def install(browser, app_name):
 
 
 def enable(browser, app_name):
-    interface.nav_to_apps_module(browser, get_app_module(app_name))
+    interface.nav_to_module(browser, get_app_module(app_name))
     browser.find_by_id(get_app_checkbox_id(app_name)).check()
     browser.find_by_value('Update setup').click()
     if app_name in app_config_updating_text:
@@ -68,7 +69,7 @@ def enable(browser, app_name):
 
 
 def disable(browser, app_name):
-    interface.nav_to_apps_module(browser, get_app_module(app_name))
+    interface.nav_to_module(browser, get_app_module(app_name))
     browser.find_by_id(get_app_checkbox_id(app_name)).uncheck()
     browser.find_by_value('Update setup').click()
     if app_name == app_config_updating_text:
