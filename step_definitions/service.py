@@ -38,3 +38,13 @@ def ntp_should_be_running(browser):
 @then(parsers.parse('the network time service should not be running'))
 def ntp_should_not_be_running(browser):
     assert not service.is_running(browser, 'ntp')
+
+
+@then(parsers.parse('the service discovery service should be running'))
+def avahi_should_be_running(browser):
+    assert service.is_running(browser, 'avahi')
+
+
+@then(parsers.parse('the service discovery service should not be running'))
+def avahi_should_not_be_running(browser):
+    assert not service.is_running(browser, 'avahi')

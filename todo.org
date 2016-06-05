@@ -17,8 +17,8 @@
 ** TODO Scenario: Change timezone
 
 * Feature: Service Discovery
-** TODO Scenario: Disable application
-** TODO Scenario: Enable application
+** DONE Scenario: Disable application
+** DONE Scenario: Enable application
 
 * Feature: Help
 ** TODO Scenario: Visit the wiki

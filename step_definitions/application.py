@@ -45,6 +45,16 @@ def ntp_is_disabled(browser):
     application.disable(browser, 'ntp')
 
 
+@given(parsers.parse('the service discovery application is enabled'))
+def avahi_is_enabled(browser):
+    application.enable(browser, 'avahi')
+
+
+@given(parsers.parse('the service discovery application is disabled'))
+def avahi_is_disabled(browser):
+    application.disable(browser, 'avahi')
+
+
 @when(parsers.parse('I enable the {app_name:w} application'))
 def enable_application(browser, app_name):
     application.enable(browser, app_name)
@@ -63,3 +73,13 @@ def enable_ntp(browser):
 @when(parsers.parse('I disable the network time application'))
 def disable_ntp(browser):
     application.disable(browser, 'ntp')
+
+
+@when(parsers.parse('I enable the service discovery application'))
+def enable_avahi(browser):
+    application.enable(browser, 'avahi')
+
+
+@when(parsers.parse('I disable the service discovery application'))
+def disable_avahi(browser):
+    application.disable(browser, 'avahi')
