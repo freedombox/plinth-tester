@@ -5,6 +5,7 @@ $ sudo apt install python3-pytest
 $ pip3 install splinter
 $ pip3 install pytest-splinter
 $ pip3 install pytest-bdd
+$ pip3 install pytest-xvfb  # optional, to avoid opening browser windows
 ```
 
 # Run Plinth
@@ -32,4 +33,11 @@ first boot process.
 
 ```
 $ py.test-3
+```
+
+The full test suite can take a long time to run (over 15 minutes). You
+can also specify which tests to run, by tag or keyword:
+
+```
+$ py.test-3 -k essential
 ```
