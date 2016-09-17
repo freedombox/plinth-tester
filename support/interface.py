@@ -25,6 +25,7 @@ def login(browser, url, username, password):
     if browser.find_by_id('logout-nojs'):
         return  # already logged in
 
+    browser.find_link_by_href('/plinth/accounts/login/').first.click()
     login = browser.find_by_value('Login')
     if login:
         browser.fill('username', username)
@@ -44,6 +45,7 @@ def nav_to_module(browser, module):
         browser.find_link_by_href('/plinth/sys/').first.click()
         browser.find_link_by_href('/plinth/sys/' + module + '/').first.click()
     else:
+        browser.find_link_by_href('/plinth/apps/').first.click()
         browser.find_link_by_href('/plinth/apps/' + module + '/').first.click()
 
 
