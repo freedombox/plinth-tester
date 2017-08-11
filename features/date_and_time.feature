@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-@essential
+@essential @date-and-time
 Feature: Date and Time
   Configure time zone and network time service.
 

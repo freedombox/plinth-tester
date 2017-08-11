@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+@apps @sip
 Feature: SIP Server
   Make audio and video calls.
 

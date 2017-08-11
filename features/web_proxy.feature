@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+@apps @privoxy
 Feature: Web Proxy
   Proxy web connections for enhanced privacy.
 

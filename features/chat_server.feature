@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+@apps @xmpp
 Feature: Chat Server
   Run XMPP chat server.
 

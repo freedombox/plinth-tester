@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+@apps @mumble
 Feature: Voice Chat
   Run Mumble voice chat server.
 

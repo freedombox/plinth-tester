@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+@apps @tor
 Feature: Anonymity Network
   Manage Tor configuration.
 
