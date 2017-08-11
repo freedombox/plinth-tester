@@ -15,21 +15,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import parsers, then, when
+@sso @essential
+Feature: Single Sign On
+  Test Single Sign On features.
 
-from support import site
-
-
-@then(parsers.parse('the {site_name:w} site should be available'))
-def site_should_be_available(browser, site_name):
-    assert site.is_available(browser, site_name)
-
-
-@then(parsers.parse('the {site_name:w} site should not be available'))
-def site_should_not_be_available(browser, site_name):
-    assert not site.is_available(browser, site_name)
+Background:
+  Given I'm a logged in user
+  Given the syncthing application is installed
+  Given the syncthing application is enabled
 
 
-@when(parsers.parse('I access {app_name:w} application'))
-def access_application(browser, app_name):
-    site.access_url(browser, app_name)
+Scenario: Logged out Plinth user cannot access Syncthing web interface
+  Given I'm a logged out user
+  When I access syncthing application
+  Then I should be prompted for login
+
+Scenario: Logged in Plinth user can access Syncthing web interface
+  When I access syncthing application
+  Then the syncthing site should be available

@@ -19,11 +19,11 @@ from time import sleep
 
 from support import interface
 
-
 # unlisted apps just use the app_name as module name
 app_module = {
     'ntp': 'datetime',
     'wiki': 'ikiwiki',
+    'tt-rss': 'ttrss',
 }
 
 app_checkbox_id = {
@@ -60,20 +60,21 @@ def install(browser, app_name):
         sleep(2)
 
 
-def enable(browser, app_name):
+def _change_status(browser, app_name, change_status_to='enabled'):
     interface.nav_to_module(browser, get_app_module(app_name))
-    browser.find_by_id(get_app_checkbox_id(app_name)).check()
-    browser.find_by_value('Update setup').click()
-    if app_name in app_config_updating_text:
-        wait_for_config_update(browser, app_name)
-
-
-def disable(browser, app_name):
-    interface.nav_to_module(browser, get_app_module(app_name))
-    browser.find_by_id(get_app_checkbox_id(app_name)).uncheck()
+    checkbox = browser.find_by_id(get_app_checkbox_id(app_name))
+    checkbox.check() if change_status_to == 'enabled' else checkbox.uncheck()
     browser.find_by_value('Update setup').click()
     if app_name == app_config_updating_text:
         wait_for_config_update(browser, app_name)
+
+
+def enable(browser, app_name):
+    _change_status(browser, app_name, 'enabled')
+
+
+def disable(browser, app_name):
+    _change_status(browser, app_name, 'disabled')
 
 
 def wait_for_config_update(browser, app_name):

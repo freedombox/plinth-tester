@@ -15,21 +15,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import parsers, then, when
+@apps @tt-rss
+Feature: News Feed Reader
+  Run TT-RSS News Feed Reader.
 
-from support import site
+Background:
+  Given I'm a logged in user
+  Given the tt-rss application is installed
 
+Scenario: Enable tt-rss application
+  Given the tt-rss application is disabled
+  When I enable the tt-rss application
+  Then the tt-rss service should be running
 
-@then(parsers.parse('the {site_name:w} site should be available'))
-def site_should_be_available(browser, site_name):
-    assert site.is_available(browser, site_name)
-
-
-@then(parsers.parse('the {site_name:w} site should not be available'))
-def site_should_not_be_available(browser, site_name):
-    assert not site.is_available(browser, site_name)
-
-
-@when(parsers.parse('I access {app_name:w} application'))
-def access_application(browser, app_name):
-    site.access_url(browser, app_name)
+Scenario: Disable tt-rss application
+  Given the tt-rss application is enabled
+  When I disable the tt-rss application
+  Then the tt-rss service should not be running

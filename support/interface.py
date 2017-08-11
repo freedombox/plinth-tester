@@ -15,9 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-sys_modules = ['config', 'users', 'networks', 'names', 'letsencrypt',
-               'upgrades', 'diagnostics', 'firewall', 'datetime', 'avahi',
-               'monkeysphere', 'power']
+sys_modules = [
+    'config', 'users', 'networks', 'names', 'letsencrypt', 'upgrades',
+    'diagnostics', 'firewall', 'datetime', 'avahi', 'monkeysphere', 'power'
+]
 
 
 def login(browser, url, username, password):
@@ -37,6 +38,12 @@ def login(browser, url, username, password):
         browser.find_by_id('id_password1').fill(password)
         browser.find_by_id('id_password2').fill(password)
         browser.find_by_value('Box it up!').click()
+
+
+def is_login_prompt(browser):
+    return all([
+        browser.find_by_id('id_username'),
+        browser.find_by_id('id_password')])
 
 
 def nav_to_module(browser, module):
@@ -64,16 +71,16 @@ def create_user(browser, name, password):
 
 def rename_user(browser, old_name, new_name):
     nav_to_module(browser, 'users')
-    browser.find_link_by_href(
-        '/plinth/sys/users/' + old_name + '/edit/').first.click()
+    browser.find_link_by_href('/plinth/sys/users/' + old_name +
+                              '/edit/').first.click()
     browser.find_by_id('id_username').fill(new_name)
     browser.find_by_value('Save Changes').click()
 
 
 def delete_user(browser, name):
     nav_to_module(browser, 'users')
-    browser.find_link_by_href(
-        '/plinth/sys/users/' + name + '/delete/').first.click()
+    browser.find_link_by_href('/plinth/sys/users/' + name +
+                              '/delete/').first.click()
     browser.find_by_value('Delete ' + name).click()
 
 

@@ -15,21 +15,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pytest_bdd import parsers, then, when
+@apps @syncthing
+Feature: File Synchronization
+  Run Syncthing File Synchronization server.
 
-from support import site
+Background:
+  Given I'm a logged in user
+  Given the syncthing application is installed
 
+Scenario: Enable syncthing application
+  Given the syncthing application is disabled
+  When I enable the syncthing application
+  Then the syncthing service should be running
 
-@then(parsers.parse('the {site_name:w} site should be available'))
-def site_should_be_available(browser, site_name):
-    assert site.is_available(browser, site_name)
-
-
-@then(parsers.parse('the {site_name:w} site should not be available'))
-def site_should_not_be_available(browser, site_name):
-    assert not site.is_available(browser, site_name)
-
-
-@when(parsers.parse('I access {app_name:w} application'))
-def access_application(browser, app_name):
-    site.access_url(browser, app_name)
+Scenario: Disable syncthing application
+  Given the syncthing application is enabled
+  When I disable the syncthing application
+  Then the syncthing service should not be running

@@ -38,3 +38,7 @@ def is_available(browser, site_name):
     sleep(3)
     browser.reload()
     return browser.title != '404 Not Found'
+
+
+def access_url(browser, site_name):
+    browser.visit(config['DEFAULT']['url'] + get_site_url(site_name))

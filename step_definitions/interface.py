@@ -27,28 +27,37 @@ def logged_in_user(browser):
                     config['DEFAULT']['password'])
 
 
+@given("I'm a logged out user")
+def logged_out_user(browser):
+    browser.visit(config['DEFAULT']['url'] + '/plinth/accounts/logout/')
+
+
+@then(parsers.parse('I should be prompted for login'))
+def prompted_for_login(browser):
+    assert interface.is_login_prompt(browser)
+
+
 @given(parsers.parse("the user {name:w} doesn't exist"))
 def new_user_does_not_exist(browser, name):
     interface.nav_to_module(browser, 'users')
-    delete_link = browser.find_link_by_href(
-        '/plinth/sys/users/' + name + '/delete/')
+    delete_link = browser.find_link_by_href('/plinth/sys/users/' + name +
+                                            '/delete/')
     if delete_link:
         delete_link.first.click()
-        browser.find_by_value(
-            'Delete ' + name).click()
+        browser.find_by_value('Delete ' + name).click()
 
 
 @given(parsers.parse('the user {name:w} exists'))
 def test_user_exists(browser, name):
     interface.nav_to_module(browser, 'users')
-    user_link = browser.find_link_by_href(
-        '/plinth/sys/users/' + name + '/edit/')
+    user_link = browser.find_link_by_href('/plinth/sys/users/' + name +
+                                          '/edit/')
     if not user_link:
         create_user(browser, name, 'secret')
 
 
-@when(parsers.parse(
-    'I create a user named {name:w} with password {password:w}'))
+@when(
+    parsers.parse('I create a user named {name:w} with password {password:w}'))
 def create_user(browser, name, password):
     interface.create_user(browser, name, password)
 
