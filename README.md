@@ -8,6 +8,14 @@ $ pip3 install pytest-bdd
 $ pip3 install pytest-xvfb  # optional, to avoid opening browser windows
 ```
 
+- Install the latest version of geckodriver. 
+It's usually a single binary which you can place at /usr/local/bin/geckodriver
+
+- Install the latest version of firefox. 
+Download and extract the latest version from the firefox website and symlink the firefox binary to /usr/local/bin.
+
+Geckodriver will then use whatever version of firefox you symlink as /usr/local/bin/firefox.
+
 # Run Plinth
 
 *Warning*: Plinth-tester will change the configuration of the system
@@ -23,7 +31,7 @@ the host system at https://localhost:4430/.
 Create a new user as follows:
 
 * Username: tester
-* Password: tester
+* Password: tester@123
 
 This step is optional if a fresh install of Plinth is being
 tested. Plinth-tester will create the required user using Plinth's
@@ -32,12 +40,12 @@ first boot process.
 # Run Plinth Tests
 
 ```
-$ py.test-3
+$ py.test
 ```
 
 The full test suite can take a long time to run (over 15 minutes). You
 can also specify which tests to run, by tag or keyword:
 
 ```
-$ py.test-3 -k essential
+$ py.test -k essential
 ```
